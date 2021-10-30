@@ -119,6 +119,17 @@ try:
                 print(row)
         print('#' * 100)
 
+        print('Question 5', '#' * 100)
+        with connection.cursor() as cursor:
+            select = """SELECT DISTINCT name 
+                        FROM toys, toys_repair
+                        WHERE toys.toy_id <> toys_repair.toy_id;
+                        """
+            cursor.execute(select)
+            rows = cursor.fetchall()
+            print ([row['name'] for row in rows])
+        print('#' * 100)
+
         with connection.cursor() as cursor:
             select = """SELECT * FROM `games`
                         WHERE date >= CURDATE() - INTERVAL 7 DAY ;
