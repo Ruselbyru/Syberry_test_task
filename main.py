@@ -104,7 +104,7 @@ try:
         #     cursor.executemany(insert_query, toys_repair)
         #     connection.commit()
 
-        # SELECT
+        # SELECT for question 4
         print('Question 4', '#' * 100)
         with connection.cursor() as cursor:
             select = """SELECT toys.toy_id, toys.name, status, status_updated, games.name, date, note
@@ -119,6 +119,7 @@ try:
                 print(row)
         print('#' * 100)
 
+        # SELECT for question 5
         print('Question 5', '#' * 100)
         with connection.cursor() as cursor:
             select = """SELECT DISTINCT name 
@@ -130,6 +131,7 @@ try:
             print ([row['name'] for row in rows])
         print('#' * 100)
 
+        # SELECT for question 3.a
         with connection.cursor() as cursor:
             select = """SELECT * FROM `games`
                         WHERE date >= CURDATE() - INTERVAL 7 DAY ;
@@ -138,11 +140,12 @@ try:
             rows = cursor.fetchall()
             new_games = [{'games':[row for row in rows]}]
 
+        # created a.yaml
         with open ('a.yaml', 'w') as file:
             data = yaml.dump(new_games)
             file.write(data)
 
-
+        # SELECT for question 3.b
         with connection.cursor() as cursor:
             select = """SELECT * FROM `toys`
                         WHERE status_updated >= CURDATE() - INTERVAL 7 DAY ;
@@ -151,16 +154,19 @@ try:
             rows = cursor.fetchall()
             new_toys = [{'toys':[row for row in rows]}]
 
+        # created b.yaml
         with open ('b.yaml', 'w') as file:
             data = yaml.dump(new_toys)
             file.write(data)
 
+        # SELECT for question 3.c
         with connection.cursor() as cursor:
             select = """SELECT * FROM `toys_repair` ;"""
             cursor.execute(select)
             rows = cursor.fetchall()
             toys_repair = [{'toys_repair':[row for row in rows]}]
 
+        # created c.yaml
         with open ('c.yaml', 'w') as file:
             data = yaml.dump(toys_repair)
             file.write(data)
