@@ -1,0 +1,11 @@
+- toys:
+  - id: 2
+    name: Teddy Bear
+    status: ok
+    status_updated: 2021-10-30
+    toy_id: 7
+  - id: 3
+    name: octopus
+    status: ok
+    status_updated: 2021-10-26
+    toy_id: 43
